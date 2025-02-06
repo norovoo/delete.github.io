@@ -1,13 +1,14 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 import FacebookLogin from 'react-facebook-login';
+import { jwtDecode } from "jwt-decode";
 import './Login.css';
 import Logo from '../assets/Logo.png';  
 import config from '../config';
 
-const GOOGLE_CLIENT_ID = "YOUR_GOOGLE_CLIENT_ID"; 
+const GOOGLE_CLIENT_ID = "151539578939-k6092m5civ46sikpfdbr2o4mlt1iut62.apps.googleusercontent.com"; 
 const FACEBOOK_APP_ID = "YOUR_FACEBOOK_APP_ID"; 
 
 const Login = ({ onLoginSuccess }) => {
@@ -15,8 +16,6 @@ const Login = ({ onLoginSuccess }) => {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const [warning, setWarning] = useState(false); 
-
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -45,13 +44,10 @@ const Login = ({ onLoginSuccess }) => {
       const response = await axios.post(`${config.BASE_URL}/api/auth/login`, { email, password });
 
       if (response.data?.token) {
-        const token = response.data.token;
-        const username = response.data.username || 'User';
+        localStorage.setItem('authToken', response.data.token);
+        localStorage.setItem('username', response.data.username || 'User');
 
-        localStorage.setItem('authToken', token);
-        localStorage.setItem('username', username);
-
-        onLoginSuccess(token, username);
+        onLoginSuccess(response.data.token, response.data.username);
         navigate('/dashboard');
       } else {
         setError('Unexpected response from the server.');
@@ -63,15 +59,15 @@ const Login = ({ onLoginSuccess }) => {
     }
   };
 
-  // ✅ Handle Google Login Success
-  const handleGoogleSuccess = async (response) => {
+  // ✅ Handle Google Login
+  const handleGoogleSuccess = async (credentialResponse) => {
     try {
-      const { tokenId } = response;
-      const googleResponse = await axios.post(`${config.BASE_URL}/api/auth/google-login`, { tokenId });
+      const decoded = jwtDecode(credentialResponse.credential);
+      const googleResponse = await axios.post(`${config.BASE_URL}/api/auth/google-login`, { token: credentialResponse.credential });
 
       if (googleResponse.data?.token) {
         localStorage.setItem('authToken', googleResponse.data.token);
-        localStorage.setItem('username', googleResponse.data.username || 'Google User');
+        localStorage.setItem('username', googleResponse.data.username || decoded.name);
 
         onLoginSuccess(googleResponse.data.token, googleResponse.data.username);
         navigate('/dashboard');
@@ -81,7 +77,7 @@ const Login = ({ onLoginSuccess }) => {
     }
   };
 
-  // ✅ Handle Facebook Login Success
+  // ✅ Handle Facebook Login
   const handleFacebookSuccess = async (response) => {
     try {
       const { accessToken, userID } = response;
@@ -100,64 +96,52 @@ const Login = ({ onLoginSuccess }) => {
   };
 
   return (
-    <div className="login-container">
-      <img src={Logo} alt="Logo" width={200} className="login-logo" /> 
-      <h2>Login</h2>
-      {error && <p className="error-message">{error}</p>}
-      {warning && <p className="warning-message">You will be logged out due to inactivity in 1 minute.</p>}
-      
-      <div className="login-form">
-        <input
-          type="email"
-          className="login-input"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="password"
-          className="login-input"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button onClick={handleLogin} className="login-button" disabled={loading}>
-          {loading ? 'Logging in...' : 'Login'}
-        </button>
-      </div>
-
-      {/* ✅ Google Login Button */}
-      <GoogleLogin
-        clientId={GOOGLE_CLIENT_ID}
-        buttonText="Sign in with Google"
-        onSuccess={handleGoogleSuccess}
-        onFailure={() => setError('Google login failed')}
-        cookiePolicy={'single_host_origin'}
-        render={(renderProps) => (
-          <button onClick={renderProps.onClick} className="google-button">
-            Sign in with Google
+    <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
+      <div className="login-container">
+        <img src={Logo} alt="Logo" width={200} className="login-logo" /> 
+        <h2>Login</h2>
+        {error && <p className="error-message">{error}</p>}
+        
+        <div className="login-form">
+          <input
+            type="email"
+            className="login-input"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
+            type="password"
+            className="login-input"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button onClick={handleLogin} className="login-button" disabled={loading}>
+            {loading ? 'Logging in...' : 'Login'}
           </button>
-        )}
-      />
+        </div>
 
-      {/* ✅ Facebook Login Button */}
-      <FacebookLogin
-        appId={FACEBOOK_APP_ID}
-        autoLoad={false}
-        fields="name,email,picture"
-        callback={handleFacebookSuccess}
-        render={(renderProps) => (
-          <button onClick={renderProps.onClick} className="facebook-button">
-            Sign in with Facebook
-          </button>
-        )}
-      />
+        {/* ✅ Google Login Button */}
+        <GoogleLogin
+          onSuccess={handleGoogleSuccess}
+          onError={() => setError('Google login failed')}
+        />
 
-      <div className="login-links">
-        <Link to="/forgot-password">Forgot Password?</Link>
-        <Link to="/register">Create New Account</Link>
+        {/* ✅ Facebook Login Button */}
+        <FacebookLogin
+          appId={FACEBOOK_APP_ID}
+          autoLoad={false}
+          fields="name,email,picture"
+          callback={handleFacebookSuccess}
+        />
+
+        <div className="login-links">
+          <Link to="/forgot-password">Forgot Password?</Link>
+          <Link to="/register">Create New Account</Link>
+        </div>
       </div>
-    </div>
+    </GoogleOAuthProvider>
   );
 };
 
