@@ -2,18 +2,17 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
-import FacebookLogin from 'react-facebook-login';
+import FacebookLogin from 'react-facebook-login-lite';
 import { jwtDecode } from "jwt-decode";
 import './Login.css';
 import Logo from '../assets/Logo.png';  
 import config from '../config';
 
 const GOOGLE_CLIENT_ID = "151539578939-k6092m5civ46sikpfdbr2o4mlt1iut62.apps.googleusercontent.com"; 
-const FACEBOOK_APP_ID = "YOUR_FACEBOOK_APP_ID"; 
+const FACEBOOK_APP_ID = "YOUR_FACEBOOK_APP_ID"; // <-- Replace with your Facebook App ID
 
 const Login = ({ onLoginSuccess }) => {
   const [email, setEmail] = useState('');
-  
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -25,12 +24,6 @@ const Login = ({ onLoginSuccess }) => {
       navigate('/dashboard');
     }
   }, [navigate]);
-
-  const handleLogout = (message) => {
-    localStorage.clear();
-    onLoginSuccess(null, null);
-    navigate('/login', { state: { message } });
-  };
 
   const handleLogin = async () => {
     if (!email || !password) {
@@ -132,9 +125,8 @@ const Login = ({ onLoginSuccess }) => {
         {/* ✅ Facebook Login Button */}
         <FacebookLogin
           appId={FACEBOOK_APP_ID}
-          autoLoad={false}
-          fields="name,email,picture"
-          callback={handleFacebookSuccess}
+          onSuccess={handleFacebookSuccess}
+          onFailure={() => setError('Facebook login failed')}
         />
 
         <div className="login-links">
