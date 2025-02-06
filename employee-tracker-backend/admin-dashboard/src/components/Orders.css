@@ -1,0 +1,561 @@
+.orders-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.update-button {
+  background-color: #007bff; /* Primary Blue */
+  color: white;
+  font-size: 14px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  height: 32px;
+}
+
+.update-button:hover {
+  background-color: #0056b3; /* Darker Blue */
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+}
+
+.search-bar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+.search-bar label {
+  font-size: 14px;
+  color: #555;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.search-bar input {
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.search-bar button {
+  grid-column: span 1; /* Make it span 1 column */
+  padding: 6px 10px;   /* Reduced padding */
+  font-size: 14px;      /* Smaller font size */
+  font-weight: bold;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+
+.search-bar button:hover {
+  background-color: #0056b3;
+}
+
+.orders-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.orders-table th,
+.orders-table td {
+  text-align: left;
+  padding: 12px;
+  font-size: 14px;
+  color: #333;
+  border-bottom: 1px solid #ddd;
+}
+
+/* 🔴 Make "Update Status" button same as "View Measurement" */
+.red-button {
+  background-color: #d9534f; /* Blood Red */
+  color: white;
+  font-size: 14px;
+  padding: 6px 10px; /* Same padding as "View Measurement" */
+  border: none;
+  border-radius: 5px;
+  height: 32px; /* Match button height */
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center; /* Center text vertically */
+  justify-content: center;
+}
+
+.red-button:hover {
+  background-color: #c9302c;
+}
+
+/* 🔲 Updated Modal (Matches View Measurement) */
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px; /* More compact padding */
+  width: 400px; /* Smaller width */
+  max-width: 90%; /* Responsive on smaller screens */
+  border-radius: 12px; /* Softer edges */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Spacing between elements */
+}
+
+.modal h3 {
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+/* 🆕 Make modal form compact */
+.modal h3 {
+  text-align: center;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+/* Modal Content */
+.modal-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.column {
+  flex: 1;
+  min-width: 180px; /* Compact column width */
+}
+
+
+/* Reduce input & textarea height */
+.modal-content label {
+  font-size: 14px;
+  font-weight: 600;
+  display: block;
+}
+
+.modal-content select,
+.modal-content textarea {
+  width: 100%;
+  padding: 6px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box; /* Ensure consistent padding */
+}
+
+.modal-content textarea {
+  height: 40px; /* Match other input heights */
+  resize: none;
+}
+
+/* Modal Actions */
+.modal-actions {
+  display: flex;
+  justify-content: space-between; /* Spread Save/Cancel buttons */
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.save-button,
+.cancel-button {
+  padding: 8px 16px;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.save-button {
+  background-color: #5cb85c;
+  color: white;
+  border: none;
+}
+
+.cancel-button {
+  background-color: #d9534f;
+  color: white;
+  border: none;
+}
+
+.orders-table th {
+  background: #f4f4f4;
+  font-weight: bold;
+}
+
+.active-page {
+  background-color: #007bff;
+  color: white;
+}
+
+.orders-table tr:hover {
+  background: #f9f9f9;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  margin-top: 20px;
+}
+
+.pagination button {
+  padding: 8px 12px;
+  font-size: 14px;
+  color: #007bff;
+  background: none;
+  border: 1px solid #007bff;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.pagination button.active,
+.pagination button:hover {
+  background-color: #007bff;
+  color: white;
+}
+.measured-tag {
+  background-color: #28a745; /* Soft green */
+  color: white;
+  padding: 6px 12px;
+  border-radius: 15px;
+  font-size: 12px;
+  font-weight: bold;
+  display: inline-block;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+}
+
+.not-measured-tag {
+  background-color: #ffc107; /* Soft yellow for Not Measured */
+  color: #212529; /* Dark text for contrast */
+  padding: 6px 12px;
+  border-radius: 15px;
+  font-size: 12px;
+  font-weight: bold;
+  display: inline-block;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+}
+
+.not-measured-tag:hover {
+  background-color: #e0a800; /* Slightly darker yellow on hover */
+  cursor: pointer;
+}
+
+.measured-tag:hover {
+  background-color: #218838; /* Slightly darker green on hover */
+  cursor: pointer;
+}
+
+.not-measured-tag {
+  color: #fff;
+  background-color: #f39c12;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.measured-tag {
+  color: #fff;
+  background-color: #27ae60;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+input[type="text"] {
+  padding: 5px;
+  margin-right: 5px;
+}
+
+button {
+  padding: 5px 10px;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.search-button {
+  background: none; /* Remove background */
+  border: none; /* Remove border */
+  cursor: pointer; /* Add pointer on hover */
+  padding-top: 30px;
+  font-size: 20px; /* Adjust icon size */
+  display: flex; /* Ensure the icon is a flex item */
+  align-items: center; /* Center icon vertically */
+  justify-content: center; /* Center icon horizontally */
+  color: #333; /* Default icon color */
+  margin-left: 5px; /* Space between icon and inputs */
+  transition: color 0.3s ease-in-out;
+}
+
+.search-button:hover {
+  color: #007bff; /* Hover color */
+}
+
+.search-button:focus {
+  outline: none; /* Remove focus outline */
+}
+
+button.seen {
+  padding: 8px 12px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button.not-seen {
+  padding: 8px 12px;
+  background-color: #ffc107;
+  color: black;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button.seen:hover {
+  background-color: #218838;
+}
+
+button.not-seen:hover {
+  background-color: #e0a800;
+}
+
+.pagination {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.pagination button {
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  cursor: pointer;
+}
+
+.pagination button.active-page {
+  background-color: #007bff;
+  color: #fff;
+  border-color: #007bff;
+}
+.add-order-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #e94560;
+  color: white;
+  font-size: 24px;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.3s ease;
+}
+
+.add-order-button:hover {
+  background-color: #ff5968;
+}
+
+.tooltip {
+  position: absolute;
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 10px;
+  z-index: 100;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tooltip input {
+  margin-bottom: 5px;
+  padding: 5px;
+  width: 100%;
+}
+
+.tooltip button {
+  margin: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.measured-tag,
+.not-measured-tag {
+  padding: 5px 10px;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.measured-tag {
+  background-color: green;
+}
+
+.not-measured-tag {
+  background-color: orange;
+}
+
+/* Style for the measurement popup */
+.measurement-popup {
+  position: absolute;
+  background-color: #f9f9f9; /* Light gray background for contrast */
+  border: 1px solid #ddd; /* Subtle border */
+  border-radius: 5px; /* Rounded corners */
+  padding: 10px; /* Padding inside the popup */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  z-index: 10; /* Ensure it appears above other elements */
+  width: 200px; /* Fixed width for consistency */
+  font-size: 14px; /* Font size for readability */
+  color: #000; /* Ensure the text is black */
+}
+
+/* Style for the measurement text */
+.measurement-popup p {
+  margin: 0;
+  font-weight: bold; /* Bold text for emphasis */
+  color: #000; /* Explicitly set text color to black */
+}
+
+/* Optional close button for the popup */
+.measurement-popup button {
+  margin-top: 10px; /* Spacing above the button */
+  background-color: #007bff; /* Primary color */
+  color: #fff; /* White text */
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.measurement-popup button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+.notes-section {
+  margin-top: 15px;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.notes-section h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #2c3e50;
+}
+
+.notes-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.notes-section ul li {
+  border-bottom: 1px solid #e0e0e0;
+  padding: 5px 0;
+}
+
+.notes-section input {
+  width: 100%;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+
+.notes-section button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+.notes-section button:hover {
+  background-color: #0056b3;
+}
+.notes-section p {
+  color: black; /* Make text black */
+  font-size: 1rem;
+  font-weight: normal;
+}
+
+/* Activity Popup - Compact Layout */
+.activity-popup {
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  margin-top: 5px;
+  width: 100%;
+  max-width: 500px; /* Reduce width slightly */
+  border: 1px solid #ddd;
+  max-height: 250px; /* Set a max height */
+  overflow-y: auto; /* Enable scrolling when needed */
+}
+
+/* Activity Title - Compact */
+.activity-popup h3 {
+  font-size: 1rem; /* Reduce font size */
+  margin-bottom: 5px;
+  color: #2c3e50;
+  text-align: center;
+}
+
+/* Compact Activity Item */
+.activity-item {
+  background: #f9f9f9;
+  border-radius: 5px;
+  padding: 6px; /* Reduce padding */
+  margin-bottom: 4px; /* Reduce margin */
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.05);
+  border-left: 4px solid #007bff;
+  font-size: 0.85rem; /* Reduce font size */
+}
+
+/* Activity Item Text - Smaller Font */
+.activity-item p {
+  margin: 0; /* Remove the margin */
+  color: #333;
+  font-size: 0.75rem; /* Keep it compact */
+  line-height: 1.2; /* Maintain a tight line spacing */
+}
+
+/* Bold Labels */
+.activity-item strong {
+  color: #2c3e50;
+  font-weight: 600;
+}

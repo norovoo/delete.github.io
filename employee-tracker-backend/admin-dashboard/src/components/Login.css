@@ -1,0 +1,129 @@
+/* Login Container */
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh; /* Full viewport height */
+  background-color: #f9f9f9; /* Light neutral background */
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Logo Styling */
+.login-logo {
+  width: 100%; /* Dynamic resizing */
+  max-width: 300px; /* Prevents oversized logos */
+  margin-bottom: 30px; /* Spacing below the logo */
+}
+
+/* Heading Styling */
+h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333; /* Dark text color */
+  font-weight: bold;
+}
+
+/* Input Fields */
+.login-input {
+  width: 100%; /* Full width within container */
+  max-width: 400px; /* Consistent size */
+  padding: 12px;
+  margin-bottom: 20px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s ease;
+}
+
+.login-input:focus {
+  border-color: #6200ee;
+  outline: none;
+}
+
+/* Login Button */
+.login-button {
+  width: 100%; /* Full width within container */
+  max-width: 400px; /* Matches input width */
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #6200ee;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.login-button:hover {
+  background-color: #4a00cc;
+  transform: translateY(-2px);
+}
+
+.login-button:disabled {
+  background-color: #ddd;
+  color: #888;
+  cursor: not-allowed;
+}
+
+/* Google Sign-In Button */
+#google-signin-button {
+  margin-top: 20px;
+  width: 100%;
+  max-width: 400px; /* Matches input width */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Error Message */
+.error-message {
+  color: #d32f2f;
+  font-size: 14px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+/* Links for Forgot Password and Register */
+.login-links {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%; /* Matches input width */
+  max-width: 400px;
+  font-size: 14px;
+}
+
+.login-links a {
+  color: #6200ee;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.login-links a:hover {
+  color: #4a00cc;
+}
+
+/* General Responsiveness */
+@media (max-width: 500px) {
+  .login-input,
+  .login-button,
+  .login-links,
+  .login-logo {
+    max-width: 90%; /* Reduce max-width for smaller screens */
+  }
+}
+
+.warning-message {
+  color: #d9534f; /* Red for warning */
+  background-color: #f8d7da; /* Light red background */
+  padding: 10px;
+  border: 1px solid #f5c6cb;
+  border-radius: 5px;
+  margin: 10px 0;
+  text-align: center;
+}

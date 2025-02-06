@@ -1,0 +1,93 @@
+/* Register.css */
+
+.register-container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 30px;
+  background: linear-gradient(135deg, #ffffff, #f9f9f9);
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.register-header {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 20px;
+}
+
+.register-input {
+  width: 100%;
+  padding: 12px 15px;
+  margin: 15px 0;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+  background-color: #fafafa;
+  transition: all 0.3s ease;
+}
+
+.register-input:focus {
+  border-color: #28a745;
+  background-color: #ffffff;
+  box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
+  outline: none;
+}
+
+.register-button {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(90deg, #28a745, #218838);
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.register-button:hover {
+  background: linear-gradient(90deg, #218838, #1e7e34);
+  box-shadow: 0px 5px 15px rgba(33, 136, 56, 0.3);
+}
+
+.register-button:disabled {
+  background: #cccccc;
+  cursor: not-allowed;
+}
+
+.recaptcha {
+  margin: 20px 0;
+}
+
+.success-message {
+  color: #28a745;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.error-message {
+  color: #d9534f;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.register-link {
+  font-size: 14px;
+  color: #007bff;
+  text-decoration: none;
+  display: block;
+  margin-top: 10px;
+}
+
+.register-link:hover {
+  text-decoration: underline;
+}
+
+.register-footer {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #666666;
+}

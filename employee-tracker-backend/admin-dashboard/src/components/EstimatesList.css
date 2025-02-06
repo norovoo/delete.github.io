@@ -1,0 +1,128 @@
+.estimate-container {
+    padding: 20px;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .search-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .filter {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .filter label {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .estimate-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .estimate-table th,
+  .estimate-table td {
+    padding: 12px 16px;
+    text-align: left;
+    color: #555;
+  }
+  
+  .estimate-table th {
+    background-color: #007bff;
+    color: white;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.05rem;
+  }
+  
+  .estimate-table tr:nth-child(even) {
+    background-color: #f8f9fa;
+  }
+  
+  .estimate-table tr:hover {
+    background-color: #e9ecef;
+  }
+  
+  .estimate-table td {
+    font-size: 0.9rem;
+  }
+  
+  .estimate-table td:first-child {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+  }
+  
+  .estimate-table td:last-child {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+  
+  /* Edit/Delete Action Links */
+  .estimate-table a {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 0.85rem;
+    margin-right: 10px;
+  }
+  
+  .estimate-table a:hover {
+    text-decoration: underline;
+    font-weight: bold;
+  }
+  
+  .estimate-table a.delete {
+    color: #dc3545;
+  }
+  
+  .estimate-table a.delete:hover {
+    color: #a71d2a;
+  }
+  
+  /* Pagination Section */
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    gap: 10px;
+  }
+  
+  .pagination a {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    padding: 6px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .pagination a:hover {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .pagination a.active {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+  }
+  
+  .pagination a.disabled {
+    color: #ccc;
+    pointer-events: none;
+  }

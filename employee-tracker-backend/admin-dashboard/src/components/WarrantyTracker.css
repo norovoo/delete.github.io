@@ -1,0 +1,168 @@
+/* General styling for the warranty page */
+.warranty-page {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Header section */
+  .warranty-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .warranty-header h2 {
+    font-size: 1.8rem;
+    color: #333;
+  }
+  
+  /* Upload buttons */
+  .upload-buttons {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .upload-btn {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    color: white;
+    background-color: #007bff;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-align: center;
+    border: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .upload-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  .upload-btn input {
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    cursor: pointer;
+  }
+  
+  /* Search bar */
+  .search-bar {
+    margin-bottom: 20px;
+  }
+  
+  .search-bar input {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: border-color 0.3s ease;
+  }
+  
+  .search-bar input:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  /* Table styling */
+  .warranty-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+  }
+  
+  .warranty-table th,
+  .warranty-table td {
+    border: 1px solid #ddd;
+    padding: 12px 10px;
+    text-align: left;
+  }
+  
+  .warranty-table th {
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    position: relative;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  .warranty-table th:hover {
+    background-color: #0056b3;
+  }
+  
+  .warranty-table th::after {
+    content: "";
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 5px solid transparent;
+  }
+  
+  .warranty-table th.sorted-asc::after {
+    border-bottom-color: white;
+  }
+  
+  .warranty-table th.sorted-desc::after {
+    border-top-color: white;
+  }
+  
+  .warranty-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .warranty-table tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .warranty-table td {
+    color: #333;
+    font-size: 14px;
+  }
+  
+  /* Highlight row borders for heatmap effect */
+  .warranty-table tr {
+    transition: border-color 0.3s ease;
+  }
+  
+  .warranty-table tr[data-border-color] {
+    border: 3px solid transparent;
+  }
+  
+  .warranty-table tr:hover[data-border-color] {
+    border-color: inherit; /* Use the dynamic border color */
+  }
+  
+  /* Status and error messages */
+  .status-message {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: bold;
+  }
+  
+  .status-message.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+  }
+  
+  .status-message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+  }

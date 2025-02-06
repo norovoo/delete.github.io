@@ -1,0 +1,346 @@
+.order-calendar-container {
+  margin: 20px auto;
+  width: 90%;
+  max-width: 1200px;
+  font-family: Arial, sans-serif;
+  color: #333; 
+}
+
+.order-calendar-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  background-color: #f5f5f5; 
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+}
+
+.order-calendar-header h2 {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #007bff; 
+}
+
+.search-bar {
+  display: flex;
+  gap: 10px;
+}
+
+.search-bar input {
+  padding: 10px;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  width: 250px;
+  font-size: 1rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.search-bar input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); 
+  outline: none;
+}
+
+.search-bar button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.search-bar button:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px); 
+}
+
+.calendar-wrapper {
+  margin-top: 20px;
+  overflow: hidden; 
+}
+
+.rbc-event {
+  white-space: normal; /* Ensure text wraps to the next line */
+  font-size: 0.9em;
+  padding: 5px;
+  line-height: 1.2;
+}
+
+.rbc-day-slot .rbc-events-container {
+  min-height: 80px; /* Allow taller day boxes */
+}
+
+.rbc-day-slot .rbc-event {
+  margin-bottom: 5px; /* Add spacing between events */
+}
+
+.rbc-month-view {
+  overflow-y: auto; /* Allow scrolling if necessary */
+}
+
+.rbc-date-cell {
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.rbc-calendar {
+  padding: 10px;
+}
+
+.rbc-event {
+  white-space: normal; /* Allow multiline text */
+  font-size: 0.9em; /* Adjust text size */
+  padding: 5px; /* Reduce padding */
+  line-height: 1.2; /* Decrease line height for tighter spacing */
+  border-radius: 5px;
+}
+
+.rbc-day-slot .rbc-events-container {
+  min-height: 120px; /* Slightly smaller height for day boxes */
+}
+
+.rbc-day-slot .rbc-event {
+  margin-bottom: 3px; /* Reduce spacing between events */
+}
+
+.rbc-calendar {
+  padding: 10px;
+}
+
+.rbc-date-cell {
+  font-size: 0.9em; /* Adjust font size for date */
+  font-weight: bold;
+}
+
+.custom-event-box {
+  position: relative; /* To ensure proper layering */
+  overflow: hidden; /* Prevent text overflow */
+}
+
+.custom-event-box:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+  color: #fff; /* Keep text visible */
+  cursor: pointer; /* Show pointer cursor */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* Add a shadow effect */
+}
+
+.custom-event-box .custom-event-content {
+  display: block; /* Ensure content is displayed */
+  color: inherit; /* Inherit text color */
+  font-size: 0.9rem; /* Adjust font size */
+  text-align: left; /* Align text for readability */
+}
+
+.custom-event-box:hover .custom-event-content {
+  display: block; /* Ensure content visibility on hover */
+}
+.rbc-day-slot .rbc-events-container {
+  min-height: 150px; /* Allow taller day boxes for multiple events */
+}
+
+.rbc-day-slot .rbc-event {
+  margin-bottom: 5px; /* Add spacing between events */
+}
+
+.rbc-calendar {
+  padding: 10px;
+}
+
+.rbc-date-cell {
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.rbc-calendar {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background-color: #ffffff; 
+}
+
+.rbc-event {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  overflow: hidden;
+  white-space: normal; /* Allow text to wrap */
+  padding: 5px;
+}
+
+.rbc-event div {
+  line-height: 1.2;
+}
+
+.rbc-event .event-title { 
+  font-weight: bold;
+  margin-bottom: 2px; /* Adjust spacing as needed */
+}
+
+.rbc-event .event-description {  
+  font-size: 0.8rem;
+  color: #eee; 
+}
+
+.rbc-event:hover {
+  transform: scale(1.05); 
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); 
+}
+
+.rbc-toolbar {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  background-color: #f8f9fa; 
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.rbc-toolbar .rbc-btn-group {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+}
+
+.rbc-toolbar button {
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  background-color: #e9ecef; 
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.rbc-toolbar button:hover {
+  background-color: #d6d8db; 
+  transform: translateY(-2px);
+}
+
+.order-list {
+  margin-top: 20px;
+  background-color: #f5f5f5; 
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.order-list h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #007bff; 
+}
+
+.order-list ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.order-list-item {
+  padding: 15px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background: #ffffff; 
+  transition: background-color 0.3s, transform 0.2s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+}
+
+.order-list-item:hover {
+  background-color: #f8f9fa; 
+  transform: translateY(-2px); 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+  .search-bar input {
+    width: 100%;
+  }
+
+  .search-bar {
+    flex-direction: column;
+  }
+
+  .search-bar button {
+    width: 100%;
+  }
+}
+
+.rbc-event-content {
+  font-size: 0.85em; /* Slightly smaller font size for compactness */
+  line-height: 1.2; /* Tighter spacing between lines */
+  padding: 5px; /* Compact padding inside the event */
+}
+
+.rbc-event-content strong {
+  display: block;
+  margin-bottom: 2px; /* Reduce space below Lot and Neighborhood */
+  font-weight: bold;
+}
+
+.rbc-event-content p {
+  margin: 1px 0; /* Tighter spacing between End Date and Shower Type */
+  line-height: 1.1; /* Reduce line height for compact appearance */
+}
+
+.rbc-event-content span {
+  display: block;
+  margin-bottom: 2px; /* Reduce space for any additional elements */
+}
+
+.rbc-event-content:hover {
+  background-color: #f0f8ff; /* Optional: Highlight effect on hover */
+  transform: scale(1.02); /* Slight scaling on hover */
+}
+
+@media print {
+  body * {
+    visibility: hidden; /* Hide everything */
+  }
+  .order-calendar-container {
+    visibility: visible; /* Make the calendar container visible */
+  }
+  .rbc-calendar {
+    width: 100%; /* Ensure calendar is fully visible */
+  }
+  .rbc-toolbar, .search-bar, .print-button {
+    display: none; /* Hide toolbar, search bar, and print button */
+  }
+}
+
+.loading-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px; /* Adjust height as needed */
+  font-size: 18px;
+  font-weight: bold;
+  color: #007bff; /* Blue color */
+  text-align: center;
+}
+
+/* Optional: Add a spinner animation */
+.loading-message::after {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-left: 10px;
+  border: 3px solid #007bff;
+  border-top: 3px solid transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* Keyframes for spinner animation */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

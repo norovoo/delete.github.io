@@ -1,0 +1,159 @@
+/* Main container of the Kanban board */
+.kanban-board {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    background-color: #f0f0f0;
+    height: calc(100vh - 100px); /* Subtract the height of the dropdown area */
+    overflow: auto; /* Allow scrolling if the content overflows */
+    box-sizing: border-box;
+    margin-top: 80px; /* Create space to ensure columns appear below the dropdown */
+    flex-wrap: nowrap;  /* Prevent wrapping */
+}
+
+/* Each column will take up equal space */
+.kanban-column {
+    flex: 1;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 20px;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    overflow-y: auto; /* Allow scrolling within the column */
+}
+
+/* Hover effect for columns */
+.kanban-column:hover {
+    transform: scale(1.02);
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Title of each column */
+.kanban-column-title {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 16px;
+    color: #333;
+}
+
+/* Styling each task box */
+.kanban-task {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;    
+    margin-bottom: 16px;
+    font-size: 14px;
+    color: #333;
+    cursor: grab;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+/* Hover effect for task boxes */
+.kanban-task:hover {
+    background-color: #f9f9f9;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* When task is being dragged */
+.kanban-task:active {
+    cursor: grabbing;
+}
+
+/* Styling the task details */
+.kanban-task p {
+    margin: 5px 0;
+    color: #555;
+}
+
+.kanban-task strong {
+    font-size: 16px;
+    color: #000;
+}
+
+/* Styling for empty state when no tasks in the column */
+.kanban-column p {
+    color: #888;
+    text-align: center;
+    font-size: 16px;
+}
+
+/* Scrollbar styling */
+.kanban-column::-webkit-scrollbar {
+    width: 8px;
+}
+
+.kanban-column::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 4px;
+}
+
+.kanban-column::-webkit-scrollbar-thumb:hover {
+    background-color: #999;
+}
+
+/* Smooth scrolling for overflow */
+.kanban-column {
+    scroll-behavior: smooth;
+}
+
+/* Container for the Year and Month dropdowns */
+.year-month-dropdowns {
+    position: fixed;  /* Fixed position so it's always visible */
+    top: 20px;  /* Distance from the top */
+    right: 20px;  /* Distance from the right */
+    display: flex;
+    gap: 10px;  /* Space between the dropdowns */
+    justify-content: flex-end;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.7);  /* Semi-transparent background */
+    padding: 5px 10px;
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* Optional: subtle shadow */
+    z-index: 10;  /* Make sure it's on top of other elements */
+}
+
+/* Style for the dropdown select boxes */
+select {
+    padding: 5px;
+    font-size: 12px;  /* Smaller font size */
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    width: 90px;  /* Set a fixed width to make it compact */
+}
+
+select:focus {
+    outline: none;
+    border-color: #4caf50; /* Focus color for dropdown */
+}
+
+label {
+    font-size: 12px;  /* Smaller font size for the labels */
+    color: #333;
+}
+
+.lot-number-search {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+.lot-number-search input {
+    padding: 8px;
+    font-size: 14px;
+    width: 250px; /* Adjust width of the search input */
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+.lot-number-search input:focus {
+    border-color: #4caf50;
+}
