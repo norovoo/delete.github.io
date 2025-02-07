@@ -53,21 +53,33 @@ const Login = ({ onLoginSuccess }) => {
     }
   };
 
-  // ✅ Handle Google Login
+  const GOOGLE_LOGIN_URL = 'https://nloce1biof.execute-api.us-east-1.amazonaws.com/default/loginAuth';
+
   const handleGoogleSuccess = async (credentialResponse) => {
     try {
-      const decoded = jwtDecode(credentialResponse.credential);
-      const googleResponse = await axios.post(`${config.BASE_URL}/api/auth/google-login`, { token: credentialResponse.credential });
-
+      // Send the Google token to the Lambda backend
+      const googleResponse = await axios.post(GOOGLE_LOGIN_URL, {
+        token: credentialResponse.credential,
+      });
+  
+      // Handle the response from Lambda
       if (googleResponse.data?.token) {
         localStorage.setItem('authToken', googleResponse.data.token);
-        localStorage.setItem('username', googleResponse.data.username || decoded.name);
-
+        localStorage.setItem('username', googleResponse.data
+  
+  .username);
+  
+        // Trigger successful login in your app
         onLoginSuccess(googleResponse.data.token, googleResponse.data.username);
+  
+        // Navigate to the dashboard
         navigate('/dashboard');
+      } else {
+        setError('Unexpected response from the server.');
       }
     } catch (error) {
       setError('Google login failed. Please try again.');
+      console.error('Google Login Error:', error);
     }
   };
 
@@ -95,7 +107,7 @@ const Login = ({ onLoginSuccess }) => {
         <img src={Logo} alt="Logo" width={200} className="login-logo" /> 
         <h2>Login</h2>
         {error && <p className="error-message">{error}</p>}
-        
+
         <div className="login-form">
           <input
             type="email"
@@ -116,23 +128,12 @@ const Login = ({ onLoginSuccess }) => {
           </button>
         </div>
 
-        {/* ✅ Google Login Button */}
+        {/* Google Login */}
         <GoogleLogin
           onSuccess={handleGoogleSuccess}
           onError={() => setError('Google login failed')}
+          redirectUri="https://chipper-caramel-8d3fab.netlify.app/auth/google/callback"
         />
-
-        {/* ✅ Facebook Login Button */}
-        <FacebookLogin
-          appId={FACEBOOK_APP_ID}
-          onSuccess={handleFacebookSuccess}
-          onFailure={() => setError('Facebook login failed')}
-        />
-
-        <div className="login-links">
-          <Link to="/forgot-password">Forgot Password?</Link>
-          <Link to="/register">Create New Account</Link>
-        </div>
       </div>
     </GoogleOAuthProvider>
   );

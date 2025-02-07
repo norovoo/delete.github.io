@@ -10,6 +10,24 @@
   font-family: 'Arial', sans-serif;
 }
 
+.google-button, .facebook-button {
+  margin: 10px 0;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.google-button {
+  background-color: #4285F4;
+  color: white;
+}
+
+.facebook-button {
+  background-color: #4267B2;
+  color: white;
+}
 /* Logo Styling */
 .login-logo {
   width: 100%; /* Dynamic resizing */

@@ -1,49 +1,50 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import './App.css'; 
 import Dashboard from './components/Dashboard';
 import Orders from './components/Orders';
-import ScheduleList from './components/ScheduleList';
+import Schedule from './components/Schedule';
 import Measurements from './components/Measurements';
 import Login from './components/Login';
+import ScheduleList from './components/ScheduleList';
+import Invoice from './components/Invoices'; 
+import EpoTracker from './components/EpoTracker'; // New Menu
+import WarrantyTracking from './components/WarrantyTracker'; // New Menu
+import KanbanBoard from './components/KanbanBoard'
 import Register from './components/Register';
+import SupplierOrderForm from './components/SupplierOrderForm';
+import Profile from './components/Profile';
 import ForgotPassword from './components/ForgotPassword';
 import LocationMap from './components/LocationMap';
-import OrderHistory from './components/OrderHistory';
-import MirrorRuns from './components/MirrorRun';
-import Invoice from './components/Invoices';
-import PrivacyPolicy from "./pages/PrivacyPolicy";
-import DataDeletion from "./pages/DataDeletion";
-import KanbanBoard from './components/KanbanBoard';
-import Profile from './components/Profile';
-import EpoTracker from './components/EpoTracker';
-import WarrantyTracking from './components/WarrantyTracker';
 import ItemList from './components/ItemList';
 import OrderCalendar from './components/OrderCalendar';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import CreateInvoice from './components/CreateInvoice';
 import Estimates from './components/Estimates';
 import EstimatesList from './components/EstimatesList';
+import ParentComponent from './components/ParentComponent';
 import OrderForm from './components/OrderForm';
 import WarrantyList from './components/WarrantyList';
-import SupplierOrderForm from './components/SupplierOrderForm';
+import MirrorRuns from './components/MirrorRun';
+import OrderHistory from './components/OrderHistory';
+
 
 const App = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [token, setToken] = useState(null);
-  const [username, setUsername] = useState('');
+  const [isAuthenticated, setIsAuthenticated] = useState(false); 
+  const [token, setToken] = useState(null);  
+  const [username, setUsername] = useState('');  
 
-  // Check authentication status on page load
   useEffect(() => {
-    const savedToken = localStorage.getItem('authToken');
-    const savedUsername = localStorage.getItem('username');
+    const mockToken = 'mocked_token';
+    const mockUsername = 'Test User';
 
-    if (savedToken) {
-      setIsAuthenticated(true);
-      setToken(savedToken);
-      setUsername(savedUsername || 'User');
-    }
-  }, []);
+    setIsAuthenticated(true);
+    setToken(mockToken);
+    setUsername(mockUsername);
 
-  // Handle login success
+    localStorage.setItem('authToken', mockToken);
+    localStorage.setItem('username', mockUsername);
+  }, []); 
+
   const handleLoginSuccess = (token, username) => {
     setIsAuthenticated(true);
     setToken(token);
@@ -52,7 +53,6 @@ const App = () => {
     localStorage.setItem('username', username);
   };
 
-  // Handle logout
   const handleLogout = () => {
     setIsAuthenticated(false);
     setToken(null);
@@ -64,15 +64,12 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        {/* Default route: Redirect to login if not authenticated */}
         <Route
           path="/"
           element={
             isAuthenticated ? <Navigate to="/dashboard" replace /> : <Navigate to="/login" replace />
           }
         />
-
-        {/* Public Routes */}
         <Route
           path="/login"
           element={
@@ -91,37 +88,220 @@ const App = () => {
             isAuthenticated ? <Navigate to="/dashboard" replace /> : <ForgotPassword />
           }
         />
+        <Route
+          path="/dashboard"
+          element={
+            isAuthenticated && token ? (
+              <Dashboard token={token} username={username} onLogout={handleLogout} />
+            ) : (
+              <Navigate to="/login" replace />
+            )
+          }
+        />
+        
+        <Route
+          path="/dashboard/orders"
+          element={
+            isAuthenticated && token ? (
+              <Orders token={token} />
+            ) : (
+              <Navigate to="/login" replace />
+            )
+          }
+        />
+        <Route
+          path="/dashboard/order-history"
+          element={
+            isAuthenticated && token ? (
+              <OrderHistory token={token} />
+            ) : (
+              <Navigate to="/login" replace />
+            )
+          }
+        />
+         <Route
+          path="/dashboard/mirror-run"
+          element={
+            isAuthenticated && token ? (
+              <MirrorRuns token={token} />
+            ) : (
+              <Navigate to="/login" replace />
+            )
+          }
+        />
+        <Route
+          path="/dashboard/schedule"
+          element={
+            isAuthenticated && token ? (
+              <ScheduleList />
+            ) : (
+              <Navigate to="/login" replace />
+            )
+          }
+        />
+        <Route
+          path="/dashboard/location-map"
+          element={
+            isAuthenticated && token ? (
+              <LocationMap />
+            ) : (
+              <Navigate to="/login" replace />
+            )
+          }
+        />
+        <Route
+          path="/dashboard/measurements"
+          element={
+            isAuthenticated && token ? (
+              <Measurements token={token} />
+            ) : (
+              <Navigate to="/login" replace />
+            )
+          }
+        />
+        <Route
+          path="/dashboard/invoices"
+          element={
+            isAuthenticated && token ? (
+              <Invoice token={token} />
+            ) : (
+              <Navigate to="/login" replace />
+            )
+          }
+        />
+        {/* <Route
+          path="/dashboard/kanban-board"
+          element={
+            isAuthenticated && token ? (
+              <KanbanBoard token={token} />
+            ) : (
+              <Navigate to="/login" replace />
+            )
+          }
+        /> */}
+        <Route
+          path="/dashboard/kanban-board"
+          element={
+            isAuthenticated && token ? (
+              <ParentComponent token={token} />
+            ) : (
+              <Navigate to="/login" replace />
+            )
+          }
+        />
+        {/* New Menus */}
+        <Route
+          path="/dashboard/epo-tracker"
+          element={
+            isAuthenticated && token ? (
+              <EpoTracker token={token} />
+            ) : (
+              <Navigate to="/login" replace />
+            )
+          }
+        />
+        <Route
+          path="/dashboard/warranty-tracking"
+          element={
+            isAuthenticated && token ? (
+              <WarrantyTracking token={token} />
+            ) : (
+              <Navigate to="/login" replace />
+            )
+          }
+        />
+        <Route
+          path="/dashboard/warranty-list"
+          element={
+            isAuthenticated && token ? (
+              <WarrantyList token={token} />
+            ) : (
+              <Navigate to="/login" replace />
+            )
+          }
+        />
+        <Route
+          path="/dashboard/profile"
+          element={
+            isAuthenticated && token ? (
+              <Profile token={token} />
+            ) : (
+              <Navigate to="/login" replace />
+            )
+          }
+        />
+        <Route
+          path="/dashboard/item-list"
+          element={
+            isAuthenticated && token ? (
+              <ItemList token={token} />
+            ) : (
+              <Navigate to="/login" replace />
+            )
+          }
+        />
+        <Route
+          path="/dashboard/order-calendar"
+          element={
+            isAuthenticated && token ? (
+              <OrderCalendar token={token} />
+            ) : (
+              <Navigate to="/login" replace />
+            )
+          }
+        />
 
-        {/* Protected Routes (Only if logged in) */}
-        {isAuthenticated && (
-          <>
-            <Route path="/dashboard" element={<Dashboard token={token} username={username} onLogout={handleLogout} />} />
-            <Route path="/dashboard/orders" element={<Orders token={token} />} />
-            <Route path="/dashboard/order-history" element={<OrderHistory token={token} />} />
-            <Route path="/dashboard/mirror-run" element={<MirrorRuns token={token} />} />
-            <Route path="/dashboard/schedule" element={<ScheduleList />} />
-            <Route path="/dashboard/location-map" element={<LocationMap />} />
-            <Route path="/dashboard/measurements" element={<Measurements token={token} />} />
-            <Route path="/dashboard/invoices" element={<Invoice token={token} />} />
-            <Route path="/dashboard/kanban-board" element={<KanbanBoard token={token} />} />
-            <Route path="/dashboard/epo-tracker" element={<EpoTracker token={token} />} />
-            <Route path="/dashboard/warranty-tracking" element={<WarrantyTracking token={token} />} />
-            <Route path="/dashboard/warranty-list" element={<WarrantyList token={token} />} />
-            <Route path="/dashboard/profile" element={<Profile token={token} />} />
-            <Route path="/dashboard/item-list" element={<ItemList token={token} />} />
-            <Route path="/dashboard/order-calendar" element={<OrderCalendar token={token} />} />
-            <Route path="/dashboard/create-invoice" element={<CreateInvoice token={token} />} />
-            <Route path="/dashboard/create-estimate" element={<Estimates token={token} />} />
-            <Route path="/dashboard/order-form" element={<OrderForm token={token} />} />
-            <Route path="/dashboard/estimates-list" element={<EstimatesList token={token} />} />
-            <Route path="/dashboard/supplier-order-form" element={<SupplierOrderForm token={token} />} />
-            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-            <Route path="/data-deletion" element={<DataDeletion />} />  
-          </>
-        )}
-
-        {/* If no route matches, redirect to dashboard or login */}
-        <Route path="*" element={<Navigate to={isAuthenticated ? "/dashboard" : "/login"} replace />} />
+        <Route
+          path="/dashboard/create-invoice"
+          element={
+            isAuthenticated && token ? (
+              <CreateInvoice token={token} />
+            ) : (
+              <Navigate to="/login" replace />
+            )
+          }
+        />
+        <Route
+          path="/dashboard/supplier-order-form"
+          element={
+            isAuthenticated && token ? (
+              <SupplierOrderForm token={token} />
+            ) : (
+              <Navigate to="/login" replace />
+            )
+          }
+        />
+         <Route
+          path="/dashboard/create-estimate"
+          element={
+            isAuthenticated && token ? (
+              <Estimates token={token} />
+            ) : (
+              <Navigate to="/login" replace />
+            )
+          }
+        />
+        <Route
+          path="/dashboard/order-form"
+          element={
+            isAuthenticated && token ? (
+              <OrderForm token={token} />
+            ) : (
+              <Navigate to="/login" replace />
+            )
+          }
+        />
+        <Route
+          path="/dashboard/estimates-list"
+          element={
+            isAuthenticated && token ? (
+              <EstimatesList token={token} />
+            ) : (
+              <Navigate to="/login" replace />
+            )
+          }
+        />
+        <Route path="*" element={<Navigate to="/dashboard" replace />} />
       </Routes>
     </Router>
   );
